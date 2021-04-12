@@ -1,0 +1,19 @@
+jms_serializer:
+    visitors:
+        xml_serialization:
+            format_output: '%kernel.debug%'
+    metadata:
+        auto_detection: false
+        directories:
+            valueobject:
+                namespace_prefix: "App\\Domain\\ValueObject"
+                path: "%kernel.root_dir%/Application/config/serializer/valueobject"
+            entityobject:
+                namespace_prefix: "App\\Domain\\Entity"
+                path: "%kernel.root_dir%/Application/config/serializer/entity"
+#            any-name:
+#                namespace_prefix: "My\\FooBundle"
+#                path: "@MyFooBundle/Resources/config/serializer"
+#            another-name:
+#                namespace_prefix: "My\\BarBundle"
+#                path: "@MyBarBundle/Resources/config/serializer"

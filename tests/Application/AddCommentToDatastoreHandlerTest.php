@@ -20,5 +20,6 @@ class AddCommentToDatastoreHandlerTest extends WebTestCase
 		$handler = new AddCommentToDatastoreHandler($serializer);
 		$results = $handler->handle($event);
 		$this->assertEquals(true, $results);
+		//$this->getContainer()->get()
 	}
 }

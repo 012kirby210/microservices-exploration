@@ -9,7 +9,7 @@ class Comment
 	private $topicId;
 	private $comment;
 
-	public function __construct($event)
+	public function __construct()
 	{
 
 	}

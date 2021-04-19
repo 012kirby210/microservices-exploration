@@ -32,7 +32,7 @@ trait PrivatePropertyManipulator
 	{
 		try {
 			$reflectionProperty = $this->getAccessibleReflectionProperty($object,$property);
-			$reflectionProperty->setValue($value);
+			$reflectionProperty->setValue($object,$value);
 		}catch(ReflectionException $e){
 			error_log("The setByReflection method throw a Reflection Exception.");
 			error_log($e->getMessage());

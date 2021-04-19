@@ -5,6 +5,8 @@ namespace App\Tests\Infrastructure\Repository;
 
 
 use App\Domain\Entity\Comment;
+use App\Domain\Repository\CommentRepositoryInterface;
+use App\Infrastructure\Repository\CommentRepository;
 use PHPUnit\Framework\TestCase;
 use App\Tests\PrivatePropertyManipulator;
 
@@ -37,12 +39,12 @@ class CommentRepositoryTest extends TestCase
 			$this->getByReflection($commentFromRepository,'topicId'));
 	}
 
-	private function getComment()
+	private function getComment() :Comment
 	{
 		$comment = new Comment();
 		$this->setByReflection($comment,'userId','8');
 		$this->setByReflection($comment,'topicId','14');
 		$this->setByReflection($comment,'comment','je suis le commentaire');
-
+		return $comment;
 	}
 }

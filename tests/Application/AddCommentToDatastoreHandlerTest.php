@@ -15,9 +15,11 @@ class AddCommentToDatastoreHandlerTest extends WebTestCase
 	{
 		$request = file_get_contents(__DIR__ . '/AddCommentToDatastoreHandlerTest/request.json');
 		$serializer = self::bootKernel()->getContainer()->get('jms_serializer');
-		$event = $serializer->deserialize($request,CommentUpsertedEvent::class,'json');
-		$handler = new AddCommentToDatastoreHandler();
+		$event = $serializer->deserialize($request, CommentUpsertedEvent::class, 'json');
+
+		$handler = new AddCommentToDatastoreHandler($serializer);
 		$results = $handler->handle($event);
-		$this->assertEquals(true,$results);
+		$this->assertEquals(true, $results);
+		//$this->getContainer()->get()
 	}
 }

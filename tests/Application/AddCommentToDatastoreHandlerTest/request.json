@@ -1,7 +1,7 @@
 {
   "data": {
     "comment": "hello you",
-    "userId": "5",
-    "topicId": "6"
+    "user_id": "5",
+    "topic_id": "6"
   }
 }

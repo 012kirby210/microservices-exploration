@@ -5,14 +5,15 @@ namespace App\Tests\Infrastructure\Repository;
 
 
 use App\Domain\Entity\Comment;
-use App\Domain\Repository\CommentRepositoryInterface;
 use App\Infrastructure\Repository\CommentRepository;
-use PHPUnit\Framework\TestCase;
+use Liip\TestFixturesBundle\Test\FixturesTrait;
+use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use App\Tests\PrivatePropertyManipulator;
 
-class CommentRepositoryTest extends TestCase
+class CommentRepositoryTest extends WebTestCase
 {
 	use PrivatePropertyManipulator;
+	use FixturesTrait;
 
 	/** @test
 	 * The test assert that on an empty database :
@@ -23,15 +24,18 @@ class CommentRepositoryTest extends TestCase
 
 	public function itSavesACommentToTheDatabase()
 	{
+		$this->loadFixtures([]);
 		$comment = $this->getComment();
 
-		$repository = new CommentRepository();
-		$this->assertEquals(0, $repository->findAll());
+		$repository = self::bootKernel()->getContainer()->get(CommentRepository::class);
+		//$repository = new CommentRepository();
+		$this->assertEquals(0, count($repository->findAll()));
 
 		$repository->save($comment);
 
-		$this->assertEquals(1,$repository->findAll());
-		$commentFromRepository = $repository->findById(1);
+		$this->assertEquals(1,count($repository->findAll()));
+		$commentFromRepository = $repository->findOneBy(['id' => 1]);
+		var_dump($repository->findById(1));
 
 		$this->assertEquals("8",
 			$this->getByReflection($commentFromRepository,'userId'));
